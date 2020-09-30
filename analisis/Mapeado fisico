@@ -1,0 +1,139 @@
+CREATE DATABASE HOSPITAL;
+USE HOSPITAL;
+CREATE TABLE ADMIN(
+ codigo VARCHAR(20) NOT NULL,
+ nombre VARCHAR(45) NOT NULL,
+ dpi VARCHAR(15) NOT NULL,
+ password VARCHAR(60) NOT NULL,
+
+ CONSTRAINT pk_admin PRIMARY KEY(codigo)
+);
+
+CREATE TABLE LABORATORISTA(
+ codigo VARCHAR(20) NOT NULL,
+ nombre VARCHAR(45) NOT NULL,
+ registro VARCHAR(45) NOT NULL,
+ telefono VARCHAR(15) NOT NULL,
+ examen VARCHAR(45) NOT NULL,
+ correo VARCHAR(45) NOT NULL,
+ trabajof DATE NOT NULL,
+ password VARCHAR(60) NOT NULL, 
+
+ CONSTRAINT pk_laboratorista PRIMARY KEY(codigo)
+);
+
+CREATE TABLE TRABAJO(
+ codigo VARCHAR(20) NOT NULL,
+ dia VARCHAR(45) NOT NULL,
+
+ CONSTRAINT pk_trabajo PRIMARY KEY(dia, codigo),
+ CONSTRAINT fk_trabajo FOREIGN KEY(codigo) REFERENCES LABORATORISTA(codigo)
+);
+
+CREATE TABLE EXAMEN(
+ codigo VARCHAR(20) NOT NULL,
+ nombre VARCHAR(45) NOT NULL,
+ orden VARCHAR(45) NOT NULL,
+ descripcion VARCHAR(450) NOT NULL,
+ costo DECIMAL(11,2) NOT NULL,
+ informe VARCHAR(3) NOT NULL, 
+
+ CONSTRAINT pk_examen PRIMARY KEY(codigo)
+);
+
+CREATE TABLE PACIENTE(
+ codigo VARCHAR(20) NOT NULL,
+ nombre VARCHAR(45) NOT NULL,
+ sexo VARCHAR(10) NOT NULL,
+ birth DATE NOT NULL,
+ dpi VARCHAR(15) NOT NULL,
+ telefono VARCHAR(15) NOT NULL,
+ peso DECIMAL(11,2) NOT NULL,
+ sangre VARCHAR(4) NOT NULL,
+ correo VARCHAR(45) NOT NULL,
+ password VARCHAR(45) NOT NULL, 
+
+ CONSTRAINT pk_paciente PRIMARY KEY(codigo)
+);
+
+CREATE TABLE RESULTADO(
+ codigo VARCHAR(20) NOT NULL,
+ paciente VARCHAR(20) NOT NULL,
+ examen VARCHAR(20) NOT NULL,
+ laboratorista VARCHAR(20) NOT NULL,
+ orden VARCHAR(45) NOT NULL,
+ informe VARCHAR(45) NOT NULL,
+ fecha DATE NOT NULL,
+ hora TIME NOT NULL,
+
+ CONSTRAINT pk_resultado PRIMARY KEY(codigo),
+ CONSTRAINT fk_resultado_paciente FOREIGN KEY(paciente) REFERENCES PACIENTE(codigo),
+ CONSTRAINT fk_resultado_examen FOREIGN KEY(examen) REFERENCES EXAMEN(codigo),
+ CONSTRAINT fk_resultado_laboratorista FOREIGN KEY(laboratorista) REFERENCES LABORATORISTA(codigo)
+);
+
+CREATE TABLE DOCTOR(
+ codigo VARCHAR(20) NOT NULL,
+ nombre VARCHAR(45) NOT NULL,
+ colegiado VARCHAR(15) NOT NULL,
+ dpi VARCHAR(15) NOT NULL,
+ telefono VARCHAR(15) NOT NULL,
+ correo VARCHAR(45) NOT NULL,
+ trabajo DATE NOT NULL,
+ password VARCHAR(45) NOT NULL, 
+
+ CONSTRAINT pk_doctor PRIMARY KEY(codigo)
+);
+
+CREATE TABLE HORARIO(
+ codigo VARCHAR(20) NOT NULL,
+ inicio TIME NOT NULL,
+ fin TIME NOT NULL, 
+
+ CONSTRAINT pk_horario PRIMARY KEY(codigo),
+ CONSTRAINT fk_horario FOREIGN KEY(codigo) REFERENCES DOCTOR(codigo)
+);
+
+CREATE TABLE CONSULTA(
+ tipo VARCHAR(45) NOT NULL,
+ costo DECIMAL(11,2) NOT NULL DEFAULT '0.00',
+
+ CONSTRAINT pk_consulta PRIMARY KEY(tipo)
+);
+
+CREATE TABLE ESPECIALIDAD(
+ codigo VARCHAR(20) NOT NULL,
+ titulo VARCHAR(45) NOT NULL,
+
+ CONSTRAINT pk_especialidad PRIMARY KEY(codigo, titulo),
+ CONSTRAINT fk_especialidad_doctor FOREIGN KEY(codigo) REFERENCES DOCTOR(codigo),
+ CONSTRAINT fk_especialidad_consulta FOREIGN KEY(titulo) REFERENCES CONSULTA(tipo)
+);
+
+CREATE TABLE CITA(
+ codigo VARCHAR(20) NOT NULL,
+ paciente VARCHAR(20) NOT NULL,
+ medico VARCHAR(20) NOT NULL,
+ fecha DATE NOT NULL,
+ hora TIME NOT NULL,
+
+ CONSTRAINT pk_cita PRIMARY KEY(codigo),
+ CONSTRAINT fk_cita_paciente FOREIGN KEY(paciente) REFERENCES PACIENTE(codigo),
+ CONSTRAINT fk_cita_doctor FOREIGN KEY(medico) REFERENCES DOCTOR(codigo)
+);
+
+CREATE TABLE REPORTE(
+ codigo VARCHAR(20) NOT NULL,
+ paciente VARCHAR(20) NOT NULL,
+ medico VARCHAR(20) NOT NULL,
+ informe VARCHAR(450) NOT NULL,
+ fecha DATE NOT NULL,
+ hora TIME NOT NULL,
+
+ CONSTRAINT pk_reporte PRIMARY KEY(codigo),
+ CONSTRAINT fk_reporte_paciente FOREIGN KEY(paciente) REFERENCES PACIENTE(codigo),
+ CONSTRAINT fk_reporte_doctor FOREIGN KEY(medico) REFERENCES DOCTOR(codigo)
+);
+
+
+
