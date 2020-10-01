@@ -23,7 +23,8 @@
         <%@include file="html/partes-codigo-html/imagen-superior.html"%>
         <%@include file="html/partes-codigo-html/form-datos-login.html"%>
         <%@include file="html/partes-codigo-html/boton-crear-cuenta.html"%>
-        <%@include file="html/partes-codigo-html/parte-inferior-login.html"%>
+        <%@include file="html/partes-codigo-html/boton-cargar-archivo.html" %>
+        <%@include file="html/partes-codigo-html/parte-inferior-login.html"%>        
         
         <script src="js-bootstrap/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="js-bootstrap/bootstrap.bundle.js" type="text/javascript"></script>
