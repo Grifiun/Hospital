@@ -5,11 +5,11 @@
  */
 package lector_archivo;
 
+import conection_db.Registrar;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import funciones.GenerarQueryInsert;
 import java.util.List;
 
@@ -19,20 +19,24 @@ import java.util.List;
  */
 public class LeerArchivo {
     File archivo = null;
+    //Uso: guarda los identificadores de la tabla principal
     ArrayList<String> identificador = new ArrayList();
+    //Uso: guarda los datos de la tabla principal
     ArrayList<String> dato = new ArrayList();
+    //Uso: guarda los identificadores de la subtabla en curso
     ArrayList<String> identificadorSubTabla = new ArrayList();
+    //Uso: guarda los datos de la subtabla en curso
     ArrayList<String> datoSubTabla = new ArrayList();
-    
-    ArrayList<String> query = new ArrayList();
+    //Querys actuales    
+    ArrayList<String> queryList = new ArrayList();
+    List<ArrayList<String>> datoQuery = new ArrayList();
     
     String path;
     
     public LeerArchivo(String path){
         //this.archivo = archivo;
         this.path = "/home/grifiun/proyectos/Hospital/xml/"+path;
-        leerArchivo();
-        registrar();
+        leerArchivo();        
     }    
     
     public void leerArchivo(){
@@ -53,7 +57,7 @@ public class LeerArchivo {
             
             //substring(0, auxMat.length() - 1) hace que se remueva el ultimo caracter agregado, que seria un "*"                         
         }catch(Exception e){            
-            JOptionPane.showMessageDialog(null, "FIN");            
+            System.out.println("FIN LECTURA");   
         } 
     
     }
@@ -86,8 +90,16 @@ public class LeerArchivo {
                        
             //GENERAMOS QUERY
             //instanciamos
-            GenerarQueryInsert auxGenQ = new GenerarQueryInsert(identificador, dato);
-            query.add(auxGenQ.generar());//agregamos el query generado
+            GenerarQueryInsert auxGenQ = new GenerarQueryInsert(identificador, dato, datoQuery, queryList);
+            //Obtenemos los listados actualizados
+            this.datoQuery = new ArrayList<ArrayList<String>> (auxGenQ.getDatoQuery());
+            this.queryList = new ArrayList<String> (auxGenQ.getQueryList());
+            //Registramos
+            Registrar reg = new Registrar(new ArrayList<ArrayList<String>> (datoQuery), new ArrayList<String>(queryList));
+            reg.realizarRegistro();
+            //limpiamos despues de ingresar los datos
+            datoQuery.clear();
+            queryList.clear();
             
             identificador.clear();
             dato.clear();
@@ -115,8 +127,10 @@ public class LeerArchivo {
             System.out.println("      FIN SUBTABLA:");//se imprime el inicio de subtabla
             //GENERAMOS QUERY
             //instanciamos
-            GenerarQueryInsert auxGenQ = new GenerarQueryInsert(identificadorSubTabla, datoSubTabla);
-            query.add(auxGenQ.generar());//agregamos el query generado
+            GenerarQueryInsert auxGenQ = new GenerarQueryInsert(identificadorSubTabla, datoSubTabla, datoQuery, queryList);
+            //Obtenemos los listados actualizados            
+            datoQuery = new ArrayList<ArrayList<String>> (auxGenQ.getDatoQuery());
+            queryList = new ArrayList<String> (auxGenQ.getQueryList());            
             
             identificadorSubTabla.clear();
             datoSubTabla.clear();
@@ -156,12 +170,5 @@ public class LeerArchivo {
                 System.out.println("ERROR, LOS IDENTIFICADORES NO SON IGUALES\nLinea: "+linea);
         }
         
-    }
-    
-    public void registrar(){ 
-        System.out.println(query.size());
-        for(int i = 0; i < query.size(); i++){
-            System.out.println(query.get(i));
-        }    
     }
 }
