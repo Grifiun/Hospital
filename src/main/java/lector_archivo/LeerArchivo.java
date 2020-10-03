@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import funciones.GenerarQueryInsert;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -18,30 +20,28 @@ import java.util.List;
  * @author grifiun
  */
 public class LeerArchivo {
-    File archivo = null;
+    private File archivo = null;
     //Uso: guarda los identificadores de la tabla principal
-    ArrayList<String> identificador = new ArrayList();
+    private ArrayList<String> identificador = new ArrayList();
     //Uso: guarda los datos de la tabla principal
-    ArrayList<String> dato = new ArrayList();
+    private ArrayList<String> dato = new ArrayList();
     //Uso: guarda los identificadores de la subtabla en curso
-    ArrayList<String> identificadorSubTabla = new ArrayList();
+    private ArrayList<String> identificadorSubTabla = new ArrayList();
     //Uso: guarda los datos de la subtabla en curso
-    ArrayList<String> datoSubTabla = new ArrayList();
+    private ArrayList<String> datoSubTabla = new ArrayList();
     //Querys actuales    
-    ArrayList<String> queryList = new ArrayList();
-    List<ArrayList<String>> datoQuery = new ArrayList();
+    private ArrayList<String> queryList = new ArrayList();
+    private List<ArrayList<String>> datoQuery = new ArrayList();    
     
-    String path;
-    
-    public LeerArchivo(String path){
+    private String path;
+    public LeerArchivo(String nombreArchivo){
         //this.archivo = archivo;
-        this.path = "/home/grifiun/proyectos/Hospital/xml/"+path;
+        this.path = "/home/grifiun/proyectos/Hospital/xml/"+nombreArchivo;
         leerArchivo();        
     }    
     
-    public void leerArchivo(){
+    private void leerArchivo(){
         try{///se lee el archivo
-            //FileReader fr = new FileReader(archivo);
             FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
             String aux = "";
@@ -65,7 +65,7 @@ public class LeerArchivo {
      * Analizamos la linea
      * @param linea 
      */
-    public void analizar(String linea){
+    private void analizar(String linea){
         //Tambien le removeremos los espacios en blanco al inicio y al final con trim
         linea = linea.trim();
         //Aux es un String que no tendrá los signos < y >

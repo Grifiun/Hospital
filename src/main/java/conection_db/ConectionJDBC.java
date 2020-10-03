@@ -30,16 +30,18 @@ public class ConectionJDBC {
      * @throws IllegalAccessException 
      */
     public static void crearEnlaceJDBC() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
-        try {
+        if(conexion == null){
+            try {
             Class.forName("com.mysql.jdbc.Driver");            
             Connection conection = DriverManager.getConnection(STRING_CONECTION, USER, PASS);
                 System.out.println("exitosamente");
                 setConexion(conection);//establecemos la conexion               
             
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            System.out.println("error en la conexion con la DB");            
-        }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+                System.out.println("error en la conexion con la DB");            
+            }        
+        }        
     }
     
     /**
@@ -49,18 +51,7 @@ public class ConectionJDBC {
      * @return 
      */
     public static Connection getConexion() throws ClassNotFoundException {
-        try {
-            if(conexion.isClosed() == true){
-                crearEnlaceJDBC();
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error:"+ex.getMessage());
-        } catch (InstantiationException ex) {       
-            System.out.println("Error:"+ex.getMessage());
-        } catch (IllegalAccessException ex) {
-            System.out.println("Error:"+ex.getMessage());
-        }
-        
+                
         return conexion;
     }
 

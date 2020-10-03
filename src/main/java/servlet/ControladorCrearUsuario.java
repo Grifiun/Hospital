@@ -5,8 +5,12 @@
  */
 package servlet;
 
+import conection_db.Registrar;
+import funciones.GenerarQueryInsert;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,48 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControladorCrearUsuario", urlPatterns = {"/ControladorCrearUsuario"})
 public class ControladorCrearUsuario extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorCrearUsuario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorCrearUsuario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
+     
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -72,17 +35,44 @@ public class ControladorCrearUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //creamos un AL para guardar los datos        
+        ArrayList<String> datos = new ArrayList();
+        ArrayList<String> identificador = new ArrayList<>();
+        //nombre tabla
+        identificador.add("PACIENTE");
+        //Atributos
+        identificador.add("nombre");
+        identificador.add("sexo");
+        identificador.add("birth");
+        identificador.add("dpi");
+        identificador.add("telefono");
+        identificador.add("peso");
+        identificador.add("sangre");
+        identificador.add("correo");
+        identificador.add("password");
+        identificador.add("codigo");
+        //obtenemos los datos
+        for(int i = 1; i < identificador.size() - 1; i++){
+            datos.add(request.getParameter(identificador.get(i)));
+        }          
+        datos.add("PAC-2123");
+        //registramos
+        registrar(identificador, datos);
     }
 
     /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
+     * Funcion que registra los datos enviados
+     * @param identificador
+     * @param datos 
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    private void registrar(ArrayList<String> identificador, ArrayList<String> datos){
+        ArrayList<String> queryList = new ArrayList();//ArrayList que contendra nuestra query
+        List<ArrayList<String>> datoQuery = new ArrayList();//ArrayList de arraylist que contrendra nuestro listado de querys
+        GenerarQueryInsert auxGenQ = new GenerarQueryInsert(identificador, datos, datoQuery, queryList);
+        datoQuery = new ArrayList<ArrayList<String>> (auxGenQ.getDatoQuery());//obtenemos los datos
+        queryList = new ArrayList<String> (auxGenQ.getQueryList());//obtenemos los querys
+        Registrar reg = new Registrar(new ArrayList<ArrayList<String>> (datoQuery), new ArrayList<String>(queryList));
+        reg.realizarRegistro();//registramos
+    }
+    
 }

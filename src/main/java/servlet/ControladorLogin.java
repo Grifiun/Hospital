@@ -6,7 +6,9 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import conection_db.Consultar;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +35,40 @@ public class ControladorLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String codigo, password, usuarioRol = "";
+        String[] tabla = {"PACIENTE","DOCTOR","LABORATORISTA","ADMIN"};//Se usara para identificar el usuario
+        codigo = request.getParameter("codigo");
+        password = request.getParameter("pass");
         
+        Consultar cons = new Consultar();//instanciamos
+        //preparamos los datos
+        ArrayList<String> atributosAux = new ArrayList();
+        atributosAux.add("codigo");
+        atributosAux.add("password");
+        ArrayList<String> datosAux = new ArrayList();
+        datosAux.add(codigo);
+        datosAux.add(password);
+        System.out.println("codigo: "+codigo+"pass: " +password);
+        for(int i = 0; i < tabla.length; i++){             
+            if(cons.consultarExistenciaRegistro(tabla[i], atributosAux, datosAux)){//Verificamos si existe dicho usuario en la base de datos
+                usuarioRol = tabla[i].toLowerCase();//se lo encuentra le asigna el rol al usuario
+                break;//ceramos el ciclo
+            }                
+        }  
+        
+        switch(usuarioRol){
+            case "": 
+                //no encuentra al usuario
+                System.out.println("SIN NADA");
+                RequestDispatcher rd = request.getRequestDispatcher("/jsp/usuario-no-encontrado.jsp");
+                rd.forward(request, response);  
+                break;
+            default:
+                System.out.println("CON ROL");
+                RequestDispatcher rd2 = request.getRequestDispatcher("/jsp/home-"+usuarioRol+".jsp");
+                rd2.forward(request, response);
+                break;
+        }
     }
 
     /**
