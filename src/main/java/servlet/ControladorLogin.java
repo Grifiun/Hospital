@@ -14,14 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Este servlet recibe el codigo de usuario y la password
+ * ingresada por el usuario, y se verifica si los datos son 
+ * correctos.
  * @author grifiun
  */
 @WebServlet(name = "ControladorLogin", urlPatterns = {"/ControladorLogin"})
 public class ControladorLogin extends HttpServlet {
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Metodo dePost, usada para recibir los datos
      *
      * @param request servlet request
      * @param response servlet response
@@ -35,8 +37,11 @@ public class ControladorLogin extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
-     *
+     * El servlet "ControladorLogin" tiene como funcion 
+     * manejar el ingreso de los usuarios dentro del sistema.
+     * 
+     * Se encarga de verificar la existencia de los usuario dentro
+     * de la base de datos así como revisar la contrasena     *
      * @return a String containing servlet description
      */
     @Override

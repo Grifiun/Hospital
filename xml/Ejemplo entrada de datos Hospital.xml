@@ -1,0 +1,48 @@
+<hospital>
+  <admin>
+    <CODIGO>ADMIN1</CODIGO>
+    <DPI>69712516133</DPI>
+    <NOMBRE>Diego Domiguez</NOMBRE>
+    <PASSWORD>dfDrVH~9a#-7)^w^P9pB</PASSWORD>
+  </admin>
+<admin>
+    <CODIGO>ADMIN1</CODIGO>
+    <DPI>69712516133</DPI>
+    <NOMBRE>Diego Domiguez</NOMBRE>
+    <PASSWORD>dfDrVH~9a#-7)^w^P9pB</PASSWORD>
+  </admin>
+ <laboratorista>
+    <CODIGO>LAB-249</CODIGO>
+    <NOMBRE>Eugenio Derbez</NOMBRE>
+    <REGISTRO>SALUD-2731534</REGISTRO>
+    <DPI>82985745906</DPI>
+    <TELEFONO>97961948</TELEFONO>
+    <EXAMEN>CSC</EXAMEN>
+    <CORREO>333mail@hospital.com</CORREO>
+    <TRABAJO>
+      <DIA>Martes</DIA>
+      <DIA>Jueves</DIA>
+      <DIA>Sabado</DIA>
+    </TRABAJO>
+    <TRABAJO>2019-01-07</TRABAJO>
+    <PASSWORD>3rJeSD.></PASSWORD>
+  </laboratorista>
+<doctor>
+    <CODIGO>MED-123</CODIGO>
+    <NOMBRE>Alejandra Mendez</NOMBRE>
+    <COLEGIADO>3890</COLEGIADO>
+    <DPI>72463794587</DPI>
+    <TELEFONO>31661250</TELEFONO>
+    <ESPECIALIDAD>
+      <TITULO>Pediatria</TITULO>
+      <TITULO>Ginecologia</TITULO>
+    </ESPECIALIDAD>
+    <CORREO>mail123@hospital.com</CORREO>
+    <HORARIO>
+      <INICIO>6:00</INICIO>
+      <FIN>14:00</FIN>
+    </HORARIO>
+    <TRABAJO>2010-9-2</TRABAJO>
+    <PASSWORD>~fc,X,9;</PASSWORD>
+  </doctor>
+</hospital>
