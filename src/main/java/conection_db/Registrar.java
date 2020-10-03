@@ -27,16 +27,7 @@ public class Registrar {
      */
     public Registrar(List<ArrayList<String>> queryDato, ArrayList<String> query){
         this.queryDato = queryDato;
-        this.query = query;
-        try {
-            ConectionJDBC.crearEnlaceJDBC();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.query = query;        
     }
 
     /**
@@ -49,40 +40,14 @@ public class Registrar {
                 //Registramos las ordenes
                 //Query.get(i)
                 //y los datos
-                //queryDato.get(i)                
-                crearDeclaracionPreparada(queryDato.get(i), query.get(i)).executeUpdate();
+                //queryDato.get(i) 
+                CrearDeclaracionPreparada cdp = new CrearDeclaracionPreparada();
+                cdp.crearDeclaracionPreparada(queryDato.get(i), query.get(i)).executeUpdate();
             } catch (SQLException ex) {
                 System.out.println("error: "+ ex.getMessage());
             }
         }
     }
     
-    /**
-     * Funcion encargada de crear y retornar una declaracion preparada con la
-     * orden "orden" de tipo String, con los datos dados en el arrayList
-     * de tipo ArrayList<String> y en la conexion "conexion" de tipo 
-     * java.sql.Connection
-     * @param datos
-     * @param orden
-     * @return 
-     */
-    private PreparedStatement crearDeclaracionPreparada(ArrayList<String> datos, String auxQuery) {
-        try { 
-            PreparedStatement dp = null;
-            dp = ConectionJDBC.getConexion().prepareStatement(auxQuery);//asignamos el select que trae el String orden 
-            for(int i = 1; i <= datos.size(); i++){//asignamos los valores del arrayList datos en cada campo del select
-                String aux = null;                   
-                aux = datos.get(i - 1);
-                dp.setString(i, aux);    
-               
-            }  
-            return dp;
-        } catch (SQLException ex) {
-            System.out.println("\nERROR SQLL: "+ex.getSQLState()); //Imprimimos el error en consola en caso de fallar  
-            System.out.println("\nERROR SQLL: "+ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-            System.out.println("\nERROR SQLL: "+ex.getMessage());
-        }
-        return null;
-    }
+    
 }

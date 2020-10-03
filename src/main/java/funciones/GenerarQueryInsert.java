@@ -5,8 +5,10 @@
  */
 package funciones;
 
+import conection_db.Consultar;
 import java.util.ArrayList;
 import java.util.List;
+import registros.RegistroConsulta;
 
 /**
  * Clase encargada de generar un query de tipo insert
@@ -38,7 +40,11 @@ public class GenerarQueryInsert {
      */
     public void generar(){
         switch(identify.get(0)){
-            case "ESPECIALIDAD":
+            case "ESPECIALIDAD":                
+                RegistroConsulta rc = new RegistroConsulta();
+                ArrayList<String> datoAux = new ArrayList(dato);
+                datoAux.remove(0);//removemos el codigo y quedan solo las especialidades
+                rc.registrarConsultasSiNoExisten(new ArrayList<String>(datoAux));//Registramos las consultas si no existen
                 //Generamos querys repetidas para ingresar todas las especialidades
                 generarQueryRepetida();
                 break;
@@ -113,8 +119,8 @@ public class GenerarQueryInsert {
             auxIdent.clear();
             auxDato.clear();
         }
-    }
-
+    }    
+    
     public List<ArrayList<String>> getDatoQuery() {
         return datoQuery;
     }
