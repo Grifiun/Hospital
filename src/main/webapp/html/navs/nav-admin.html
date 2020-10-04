@@ -1,35 +1,57 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
+  
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="home-admin.jsp">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="home-doctor.jsp">Link</a>
-      </li>
+          <a class="nav-link" href="home-admin.jsp"> ADMINISTRADOR <span class="sr-only">(current)</span></a>
+      </li>      
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+        <a class="nav-link dropdown-toggle" href="#" id="fecha_drop_down" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Fecha del sistema
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="../../jsp/ver-fecha.jsp">Ver fecha del sistema</a>
+          <a class="dropdown-item" href="../../jsp/fecha.jsp">Cambiar fecha del sistema</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="ingresos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          INGRESOS
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="ingreso-examen.jsp">Ingresar examen</a>
+          <a class="dropdown-item" href="#">Ingresar laboratorista</a>
+          <a class="dropdown-item" href="#">Ingresar doctor</a>          
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="modificaciones" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          MODIFICACIONES
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Modificar examen</a>
+          <a class="dropdown-item" href="#">Modificar laboratorista</a>
+          <a class="dropdown-item" href="#">Modificar doctor</a>
+          <a class="dropdown-item" href="#">Modificar costo de consulta</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="reportes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Reportes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">10 Medicos con mas informes</a>
+          <a class="dropdown-item" href="#">Ingresos obtenidos por medico</a>
+          <a class="dropdown-item" href="#">5 Medicos con menos citas</a>
+          <a class="dropdown-item" href="#">Examenes de laboratorio mas demandados</a>
+          <a class="dropdown-item" href="#">Medicos con mayor cantidad de examenes de lab.</a>
+          <a class="dropdown-item" href="#">Ingresos obtenidos por paciente</a>
+        </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
+  <a class="navbar-brand" href="#">FECHA: <% out.print(session.getAttribute("fecha_sistema")); %></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 </nav>

@@ -22,6 +22,7 @@ public class RealizarRegistroTabla{
      * Agregamos un dato al arrayList datro
      */
     public void addToDato(String dato){
+        //Removemos saltos de linea
         this.datos.add(dato);
     }
     
@@ -50,5 +51,23 @@ public class RealizarRegistroTabla{
         Registrar reg = new Registrar(new ArrayList<ArrayList<String>> (datoQuery), new ArrayList<String>(queryList));
         reg.realizarRegistro();//registramos
     }
+
+    public ArrayList<String> getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(ArrayList<String> identificador) {
+        this.identificador = identificador;
+    }
+
+    public ArrayList<String> getDatos() {
+        return datos;
+    }
+
+    public void setDatos(ArrayList<String> datos) {
+        this.datos = datos;
+    }
+    
+    
     
 }

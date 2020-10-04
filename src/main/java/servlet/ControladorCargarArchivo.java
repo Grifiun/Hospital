@@ -47,6 +47,8 @@ public class ControladorCargarArchivo extends HttpServlet {
         //instanciamos el objeto encargado de analizar el archivo
         LeerArchivo la = new LeerArchivo(archivo.getSubmittedFileName());       
         
+        String direccion = "index.jsp";
+        response.sendRedirect(direccion);
     }
     
     /**

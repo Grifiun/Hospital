@@ -6,10 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    conection_db.ConectionJDBC.crearEnlaceJDBC();    
-%>
-
 <html>
     <head>        
         <title>Login</title>

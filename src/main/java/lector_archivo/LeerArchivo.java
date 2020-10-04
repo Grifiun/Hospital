@@ -76,7 +76,9 @@ public class LeerArchivo {
         //de lo contrario es un atributo
         boolean isEtiqueta = aux2.equals(linea);
         //Si contiene la palabra hospital y es el inicio del archivo
-        if(isEtiqueta && aux.equals("hospital"))
+        if(linea.contains("<?xml"))
+            System.out.println("Inici lectura archivo XML");
+        else if(isEtiqueta && aux.equals("hospital"))
             System.out.println("DATABASE INICIO");//Imprimimos la DB
         else if(isEtiqueta && aux.equals("/hospital"))//si es el fin del hospital
             System.out.println("DATABASE FIN");//se imprime que es el fin

@@ -1,0 +1,30 @@
+<h1>INGRESO EXAMEN</h1>
+<form class="col-12 caja2" method="post" action="../ControladorIngresoExamen" >             
+    <div class="form-group align-self-start">
+        <h5>Nombre del examen</h5>
+        <input type="text" class="form-control" required placeholder="nombre examen" name="nombre"/>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Requiere orden medica</h5>
+        <select name="orden" class="cont" id="orden" required>   
+            <option value="FALSE">No</option>
+            <option value="TRUE">Si</option>
+        </select>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Descripcion del examen</h5>
+        <textarea class="form-control" id="descripcion" required rows="3" name="descripcion"></textarea>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Costo examen</h5>
+        <input type="number" class="form-control" required placeholder="costo" name="costo"/>
+    </div>          
+    <div class="form-group align-self-start">
+        <h5>Tipo de archivo a almacenar</h5>
+        <select name="informe" class="cont" id="informe" required>   
+            <option value="IMG">IMG</option>
+            <option value="PDF">PDF</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-dark">REGISTRAR</button>
+</form>

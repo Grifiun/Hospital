@@ -5,13 +5,10 @@
  */
 package servlet;
 
-import conection_db.Registrar;
-import funciones.GenerarQueryInsert;
-import java.io.IOException;
 import funciones.GenerarCodigoAleatorio;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +20,9 @@ import registros.RealizarRegistroTabla;
  *
  * @author grifiun
  */
-@WebServlet(name = "ControladorCrearUsuario", urlPatterns = {"/ControladorCrearUsuario"})
-public class ControladorCrearUsuario extends HttpServlet {
-     
+@WebServlet(name = "ControladorIngresoExamen", urlPatterns = {"/ControladorIngresoExamen"})
+public class ControladorIngresoExamen extends HttpServlet {
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -42,18 +39,16 @@ public class ControladorCrearUsuario extends HttpServlet {
         rrt = new RealizarRegistroTabla();
         //Ingresamos los identificadores
         //creamos un AL para guardar los datos        
+        ArrayList<String> datos = new ArrayList();
+        ArrayList<String> identificador = new ArrayList();
         //nombre tabla
-        rrt.addToIdentificador("PACIENTE");
+        rrt.addToIdentificador("EXAMEN");
         //Atributos
         rrt.addToIdentificador("nombre");
-        rrt.addToIdentificador("sexo");
-        rrt.addToIdentificador("birth");
-        rrt.addToIdentificador("dpi");
-        rrt.addToIdentificador("telefono");
-        rrt.addToIdentificador("peso");
-        rrt.addToIdentificador("sangre");
-        rrt.addToIdentificador("correo");
-        rrt.addToIdentificador("password");
+        rrt.addToIdentificador("orden");
+        rrt.addToIdentificador("descripcion");
+        rrt.addToIdentificador("costo");
+        rrt.addToIdentificador("informe");
         rrt.addToIdentificador("codigo");
         //obtenemos los datos
         for(int i = 1; i < rrt.getIdentificador().size() - 1; i++){
@@ -61,11 +56,20 @@ public class ControladorCrearUsuario extends HttpServlet {
         }         
         //Creamos el codigo
         GenerarCodigoAleatorio genC = new GenerarCodigoAleatorio();
-        String auxCod = genC.generarCodAleatorio("PACIENTE", "PAC", 1000, 9999);
+        String auxCod = genC.generarCodAleatorio("EXAMEN", "EXA", 1000, 9999);
         rrt.addToDato(auxCod);
         //registramos
         rrt.realizarRegistro();
     }
 
-    
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

@@ -8,6 +8,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%
+            String fecha = "2020/10/04";
+            session.setAttribute("fecha_sistema", fecha);
+        %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="../html/css-bootstrap.html"%>
         <title>JSP Page</title>
