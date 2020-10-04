@@ -13,8 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>ADMIN</h1>
-        <%@include file="../html/nav.html" %>
+        <%@include file="../html/navs/nav-admin.html" %>
         <%@include file="../html/js-bootstrap.html"%>
     </body>
 </html>

@@ -8,14 +8,16 @@ package servlet;
 import conection_db.Registrar;
 import funciones.GenerarQueryInsert;
 import java.io.IOException;
-import java.io.PrintWriter;
+import funciones.GenerarCodigoAleatorio;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import registros.RealizarRegistroTabla;
 
 /**
  *
@@ -35,44 +37,36 @@ public class ControladorCrearUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Instaanciamos 
+        RealizarRegistroTabla rrt;
+        rrt = new RealizarRegistroTabla();
+        //Ingresamos los identificadores
         //creamos un AL para guardar los datos        
         ArrayList<String> datos = new ArrayList();
-        ArrayList<String> identificador = new ArrayList<>();
+        ArrayList<String> identificador = new ArrayList();
         //nombre tabla
-        identificador.add("PACIENTE");
+        rrt.addToIdentificador("PACIENTE");
         //Atributos
-        identificador.add("nombre");
-        identificador.add("sexo");
-        identificador.add("birth");
-        identificador.add("dpi");
-        identificador.add("telefono");
-        identificador.add("peso");
-        identificador.add("sangre");
-        identificador.add("correo");
-        identificador.add("password");
-        identificador.add("codigo");
+        rrt.addToIdentificador("nombre");
+        rrt.addToIdentificador("sexo");
+        rrt.addToIdentificador("birth");
+        rrt.addToIdentificador("dpi");
+        rrt.addToIdentificador("telefono");
+        rrt.addToIdentificador("peso");
+        rrt.addToIdentificador("sangre");
+        rrt.addToIdentificador("correo");
+        rrt.addToIdentificador("password");
+        rrt.addToIdentificador("codigo");
         //obtenemos los datos
         for(int i = 1; i < identificador.size() - 1; i++){
-            datos.add(request.getParameter(identificador.get(i)));
-        }          
-        datos.add("PAC-2123");
+            rrt.addToDato(request.getParameter(identificador.get(i)));
+        }         
+        //Creamos el codigo
+        GenerarCodigoAleatorio genC = new GenerarCodigoAleatorio();
+        rrt.addToDato(genC.generarCodAleatorio("PACIENTE", "PAC", 1000, 9999));
         //registramos
-        registrar(identificador, datos);
+        rrt.realizarRegistro();
     }
 
-    /**
-     * Funcion que registra los datos enviados
-     * @param identificador
-     * @param datos 
-     */
-    private void registrar(ArrayList<String> identificador, ArrayList<String> datos){
-        ArrayList<String> queryList = new ArrayList();//ArrayList que contendra nuestra query
-        List<ArrayList<String>> datoQuery = new ArrayList();//ArrayList de arraylist que contrendra nuestro listado de querys
-        GenerarQueryInsert auxGenQ = new GenerarQueryInsert(identificador, datos, datoQuery, queryList);
-        datoQuery = new ArrayList<ArrayList<String>> (auxGenQ.getDatoQuery());//obtenemos los datos
-        queryList = new ArrayList<String> (auxGenQ.getQueryList());//obtenemos los querys
-        Registrar reg = new Registrar(new ArrayList<ArrayList<String>> (datoQuery), new ArrayList<String>(queryList));
-        reg.realizarRegistro();//registramos
-    }
     
 }

@@ -28,7 +28,7 @@ public class Registrar {
     public Registrar(List<ArrayList<String>> queryDato, ArrayList<String> query){
         this.queryDato = queryDato;
         this.query = query;        
-    }
+    }    
 
     /**
      * realizamos los registros

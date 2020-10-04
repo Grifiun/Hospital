@@ -9,13 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cargar</title>
-        <%@include file="../html/css-bootstrap.html"%>
-        <%@include file="../html/css-login.html" %>
+        <title>Incorrecto</title>
+        <%@include file="../html/css-bootstrap.html" %>
+        <link href="../css/style-login.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/posicion-caja1-login.css" rel="stylesheet" type="text/css"/>        
     </head>
     <body>           
         <%@include file="../html/partes-codigo-html/parte-superior-login.html"%>
-        <%@include file="../html/partes-codigo-html/imagen-superior.html"%>
+        <%@include file="../html/crear-usuario/imagen.html"%>
         <%@include file="../html/usuario-incorrecto/regresar.html" %>
         <%@include file="../html/partes-codigo-html/parte-inferior-login.html" %>    
         

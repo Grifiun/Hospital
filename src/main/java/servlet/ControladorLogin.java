@@ -56,17 +56,17 @@ public class ControladorLogin extends HttpServlet {
             }                
         }  
         
+        String direccion = "";
         switch(usuarioRol){
-            case "": 
-                //no encuentra al usuario
-                System.out.println("SIN NADA");
-                RequestDispatcher rd = request.getRequestDispatcher("/jsp/usuario-no-encontrado.jsp");
-                rd.forward(request, response);  
+            case "":                 //no encuentra al usuario
+                System.out.println("SIN NADA");                
+                direccion = "jsp/usuario-no-encontrado.jsp";
+                response.sendRedirect(direccion);
                 break;
             default:
                 System.out.println("CON ROL");
-                RequestDispatcher rd2 = request.getRequestDispatcher("/jsp/home-"+usuarioRol+".jsp");
-                rd2.forward(request, response);
+                direccion = "jsp/home-"+usuarioRol+".jsp";
+                response.sendRedirect(direccion);
                 break;
         }
     }
