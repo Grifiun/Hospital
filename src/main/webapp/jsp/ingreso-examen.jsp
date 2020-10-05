@@ -9,7 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ingreso examen</title>        
+        <title>Ingreso examen</title> 
+        <%
+        String identificador = "EXAMEN,codigo,nombre,orden,descripcion,costo,informe";    
+        
+        session.setAttribute("identificador", identificador);       
+        %>        
         <%@include file="../html/css-bootstrap.html"%>
         <link href="../css/style-ingresos.css" rel="stylesheet" type="text/css"/>
     </head>

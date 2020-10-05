@@ -65,6 +65,9 @@ public class ControladorCrearUsuario extends HttpServlet {
         rrt.addToDato(auxCod);
         //registramos
         rrt.realizarRegistro();
+        
+        String direccion = "jsp/home-paciente.jsp";
+        response.sendRedirect(direccion);
     }
 
     

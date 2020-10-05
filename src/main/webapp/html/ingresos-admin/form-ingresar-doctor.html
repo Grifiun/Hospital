@@ -1,33 +1,36 @@
 <h1>INGRESO DOCTOR</h1>
-<form class="col-12 caja2" enctype="multipart/form-data" method="post" action="#" >             
+<form class="col-12 caja2" method="post" action="../ControladorIngresoDoctor" >             
     <div class="form-group align-self-start">
-        <h5>Nombre de la revista</h5>
-        <input type="text" class="form-control" required placeholder="nombre revista" name="nombre_revista"/>
+        <h5>Nombre</h5>
+        <input type="text" class="form-control" required placeholder="nombre" name="nombre"/>
     </div>
     <div class="form-group align-self-start">
-        <h5>Descripcion de la revista</h5>
-        <textarea class="form-control" id="descripcion_revista" required rows="3" name="descripcion_revista"></textarea>
+        <h5>Colegiado</h5>
+        <input type="text" class="form-control" required placeholder="colegiado" name="colegiado"/>
     </div>
     <div class="form-group align-self-start">
-        <h5>Costo suscripcion a la revista</h5>
-        <input type="number" class="form-control" required placeholder="suscripcion" name="costo_suscripcion"/>
-    </div>          
-
-    <div class="form-group">
-        <h5>Titulo de edicion</h5>
-        <input type="text" class="form-control" required placeholder="titulo edicion" name="titulo_edicion"/>
+        <h5>DPI</h5>
+        <input type="text" class="form-control" required placeholder="DPI" name="dpi"/>
     </div>
-    <div class="form-group">
-        <h5>Descripcion edicion revista</h5>
-        <textarea class="form-control" id="descripcion_revista" required rows="3" name="descripcion_edicion_revista"></textarea>
-    </div> 
-    <div class="form-group">
-        <h5>Tags</h5>
-        <input type="text" class="form-control" placeholder="tags" name="tag"/>
-    </div>   
-    <div class="form-group">
-        <h5>Subir libro</h5>
-        <input type="file" accept="application/pdf" class="form-control" name="archivopdf"/>
+    <div class="form-group align-self-start">
+        <h5>Telefono</h5>
+        <input type="tel" class="form-control" required placeholder="telefono" name="telefono"/>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>correo</h5>
+        <input type="email" class="form-control" required placeholder="correo" name="correo"/>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Password</h5>
+        <input type="password" class="form-control" required placeholder="password" name="password"/>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Horario inicio jordnada</h5>
+        <input type="time" class="form-control" required placeholder="inicio" name="inicio"/>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Horario fin jordnada</h5>
+        <input type="time" class="form-control" required placeholder="fin" name="fin"/>
     </div>
     <button type="submit" class="btn btn-dark">Publicar</button>
 </form>

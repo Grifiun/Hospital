@@ -23,8 +23,10 @@ public class GenerarStringIdentificador {
      * @return 
      */
     public String generarStringIdentificador(String inicio, String fin, String separador, ArrayList<String> identificador){
-        String aux = ""+inicio;
+        String aux = "";
         for(int i = 0; i < identificador.size(); i++){
+            if(i == 0)
+                aux += inicio;
             if((i + 1) == identificador.size()) //ultima iteracion
                 aux += identificador.get(i) + fin;
             else

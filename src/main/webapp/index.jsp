@@ -9,6 +9,9 @@
 <html>
     <head>        
         <title>Login</title>
+        <%
+            session.setAttribute("codigoAleatorio", "activado");
+        %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css-botstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style-login.css" rel="stylesheet" type="text/css"/>
