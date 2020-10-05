@@ -42,8 +42,6 @@ public class ControladorCrearUsuario extends HttpServlet {
         rrt = new RealizarRegistroTabla();
         //Ingresamos los identificadores
         //creamos un AL para guardar los datos        
-        ArrayList<String> datos = new ArrayList();
-        ArrayList<String> identificador = new ArrayList();
         //nombre tabla
         rrt.addToIdentificador("PACIENTE");
         //Atributos
@@ -58,14 +56,18 @@ public class ControladorCrearUsuario extends HttpServlet {
         rrt.addToIdentificador("password");
         rrt.addToIdentificador("codigo");
         //obtenemos los datos
-        for(int i = 1; i < identificador.size() - 1; i++){
-            rrt.addToDato(request.getParameter(identificador.get(i)));
+        for(int i = 1; i < rrt.getIdentificador().size() - 1; i++){
+            rrt.addToDato(request.getParameter(rrt.getIdentificador().get(i)));
         }         
         //Creamos el codigo
         GenerarCodigoAleatorio genC = new GenerarCodigoAleatorio();
-        rrt.addToDato(genC.generarCodAleatorio("PACIENTE", "PAC", 1000, 9999));
+        String auxCod = genC.generarCodAleatorio("PACIENTE", "PAC", 1000, 9999);
+        rrt.addToDato(auxCod);
         //registramos
         rrt.realizarRegistro();
+        
+        String direccion = "jsp/home-paciente.jsp";
+        response.sendRedirect(direccion);
     }
 
     

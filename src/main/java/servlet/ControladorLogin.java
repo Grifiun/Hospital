@@ -48,23 +48,22 @@ public class ControladorLogin extends HttpServlet {
         ArrayList<String> datosAux = new ArrayList();
         datosAux.add(codigo);
         datosAux.add(password);
-        System.out.println("codigo: "+codigo+"pass: " +password);
         for(int i = 0; i < tabla.length; i++){             
             if(cons.consultarExistenciaRegistro(tabla[i], atributosAux, datosAux)){//Verificamos si existe dicho usuario en la base de datos
                 usuarioRol = tabla[i].toLowerCase();//se lo encuentra le asigna el rol al usuario
                 break;//ceramos el ciclo
             }                
         }  
-        
+        request.getSession().setAttribute("rol", usuarioRol);
+        request.getSession().setAttribute("codigo", codigo);
+        request.getSession().setAttribute("mensaje", "Bienvenido");
         String direccion = "";
         switch(usuarioRol){
-            case "":                 //no encuentra al usuario
-                System.out.println("SIN NADA");                
+            case "":                 //no encuentra al usuario           
                 direccion = "jsp/usuario-no-encontrado.jsp";
                 response.sendRedirect(direccion);
                 break;
             default:
-                System.out.println("CON ROL");
                 direccion = "jsp/home-"+usuarioRol+".jsp";
                 response.sendRedirect(direccion);
                 break;

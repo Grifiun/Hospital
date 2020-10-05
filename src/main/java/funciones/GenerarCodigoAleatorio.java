@@ -37,9 +37,9 @@ public class GenerarCodigoAleatorio {
             boolean existencia = cons.consultarExistenciaRegistro(tabla, new ArrayList<>(Arrays.asList("codigo")), new ArrayList<>(Arrays.asList(codAux)));
             if(existencia == false){
                 finCiclo = true;
-            }
-            
-        }while(finCiclo == false);
+                return codAux;
+            }            
+        }while(finCiclo != true);
         
         return codAux;
     }

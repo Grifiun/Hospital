@@ -1,50 +1,8 @@
 <hospital>
-  <admin>
+ <admin>
     <CODIGO>ADMIN2</CODIGO>
     <DPI>69712516134</DPI>
     <NOMBRE>Fernando Ocana</NOMBRE>
     <PASSWORD>dfDrVH~9a#-7)^w^P9pB</PASSWORD>
   </admin>
-<admin>
-    <CODIGO>ADMIN3</CODIGO>
-    <DPI>69712516135</DPI>
-    <NOMBRE>Rudy Cayax</NOMBRE>
-    <PASSWORD>dfDrVH~9a#-7)^w^P9pB</PASSWORD>
-  </admin>
- <laboratorista>
-    <CODIGO>LAB-250</CODIGO>
-    <NOMBRE>Mario David Gramajo Perez</NOMBRE>
-    <REGISTRO>SALUD-2731534</REGISTRO>
-    <DPI>82985745907</DPI>
-    <TELEFONO>97961948</TELEFONO>
-    <EXAMEN>CSC</EXAMEN>
-    <CORREO>333mail@hospital.com</CORREO>
-    <TRABAJO>
-      <DIA>Martes</DIA>
-      <DIA>Jueves</DIA>
-      <DIA>Sabado</DIA>
-    </TRABAJO>
-    <TRABAJOF>2019-01-07</TRABAJOF>
-    <PASSWORD>3rJeSD.></PASSWORD>
-  </laboratorista>
-<doctor>
-    <CODIGO>MED-124</CODIGO>
-    <NOMBRE>Doctor 1</NOMBRE>
-    <COLEGIADO>3890</COLEGIADO>
-    <DPI>72463794587</DPI>
-    <TELEFONO>31661250</TELEFONO>
-    <ESPECIALIDAD>
-      <TITULO>Pediatria</TITULO>
-      <TITULO>Ginecologia</TITULO>
-      <TITULO>Sexologia</TITULO>
-      <TITULO>Psicologia</TITULO>
-    </ESPECIALIDAD>
-    <CORREO>mail123@hospital.com</CORREO>
-    <HORARIO>
-      <INICIO>6:00</INICIO>
-      <FIN>14:00</FIN>
-    </HORARIO>
-    <TRABAJO>2010-9-2</TRABAJO>
-    <PASSWORD>~fc,X,9;</PASSWORD>
-  </doctor>
 </hospital>
