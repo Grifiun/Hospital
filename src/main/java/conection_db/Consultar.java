@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @author grifiun
  */
 public class Consultar {
-  
+   String tipoConsulta = "";
     
     /**
      * Consulta si existe dicho registro en la tabla enviada
@@ -80,6 +80,29 @@ public class Consultar {
         return resultadoTab;
     }   
     
+    public List<ArrayList<String>> obtenerRegistros(String queryAux, ArrayList<String> atributosAObtener, ArrayList<String> dato){
+        List<ArrayList<String>> resultadoTab = new ArrayList();
+        try {            
+            System.out.println(queryAux);
+            ResultSet rs = crearResultSet(dato, queryAux);
+            while(rs.next()){//si hay otra fila
+                ArrayList<String> auxFila = new ArrayList<String>();//agregamos un axiliar para las filas
+                for(int i = 0; i < atributosAObtener.size(); i++){
+                //obtenemos todos los atributos
+                auxFila.add(rs.getString(atributosAObtener.get(i)));//obtenemos el atributo en cola
+                }
+                resultadoTab.add(new ArrayList<String>(auxFila));//agregamos la fila obtenida a la tabla                 
+                auxFila.clear(); //limpiamos el auxiliar
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL OBTENER LA TABLA: "+ex);
+        } 
+        
+        return resultadoTab;
+    }
+    
+    
     /**
      * Obtenemos el resultSet de todos los registros inidicados 
      * se buscan los atributos del ArrayList "atributoRespuesta"
@@ -97,11 +120,21 @@ public class Consultar {
         /**
          * Sin caracter de inicio ni final, separador de datos (,)
          */
-        String respuesta = gsi.generarStringIdentificador("", "", ",", atributoRespuesta);
+        String respuesta = "";
+        
+        
         /**
          * Sin caracter de inicio ni final, separador de datos (= ? AND)
          */
-        String restriccion = gsi.generarStringIdentificador(" WHERE ", " = ?", " = ? AND ", atributoRestriccion);
+        String restriccion = "";
+        if(tipoConsulta.equals("") == false){
+            restriccion = gsi.generarStringIdentificador(" WHERE ", "", "", atributoRestriccion);
+            respuesta = tipoConsulta;
+        }            
+        else{
+            restriccion = gsi.generarStringIdentificador(" WHERE ", " = ?", " = ? AND ", atributoRestriccion);
+            respuesta = gsi.generarStringIdentificador("", "", ",", atributoRespuesta);
+        }
         //armamos la query
         String queryOrden = "SELECT "+respuesta+" FROM "+tabla+ restriccion;
         return queryOrden;//retornamos el RS
@@ -124,4 +157,9 @@ public class Consultar {
         }
         return null;
     }
+
+    public void setTipoConsulta(String tipoConsulta) {
+        this.tipoConsulta = tipoConsulta;
+    }    
+    
 }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : reporte-mostrar-cita-intervalo
-    Created on : 06-oct-2020, 2:18:24
+    Document   : reporte-mostrar-historial-paciente
+    Created on : 06-oct-2020, 5:41:42
     Author     : grifiun
 --%>
 
@@ -16,16 +16,21 @@
         <%        
         //titulos
         ArrayList<String> titulo = new ArrayList<>(Arrays.asList("codigo","paciente","medico","especialidad","fecha","hora","estado"));
-        String medico = (String) session.getAttribute("codigo");
-        String fecha_inicio = request.getParameter("fecha_inicio");
-        String fecha_fin = request.getParameter("fecha_fin");
+        String paciente = request.getParameter("paciente");
         
         Consultar cons = new Consultar();
-        cons.setTipoConsulta("codigo,paciente,medico,especialidad,fecha,hora,estado");//cambiamos la restriccion
+        cons.setTipoConsulta("codigo,paciente,medico,especialidad,fecha,hora,estado");
         List<ArrayList<String>> lista = cons.obtenerRegistros("CITA", //tabla
                 new ArrayList<>(Arrays.asList("codigo","paciente","medico","especialidad","fecha","hora","estado")), //datos a obtener
-                new ArrayList<String>(Arrays.asList("(fecha BETWEEN ? AND ?) AND medico = ? ORDER BY fecha")), //restricciones
-                new ArrayList<String>(Arrays.asList(fecha_inicio,fecha_fin,medico))); //valor a cumplor  
+                new ArrayList<String>(Arrays.asList("paciente = ? ORDER BY fecha")), //restricciones
+                new ArrayList<String>(Arrays.asList(paciente))); //valor a cumplor  
+        
+        cons.setTipoConsulta("codigo,examen,fecha,estado,medico,paciente,orden");
+        ArrayList<String> titulo2 = new ArrayList<>(Arrays.asList("codigo","examen","fecha","estado","medico","paciente","orden"));
+        List<ArrayList<String>> lista2 = cons.obtenerRegistros("CITA_EXAMEN", //tabla
+                new ArrayList<>(Arrays.asList("codigo","examen","fecha","estado","medico","paciente","orden")), //datos a obtener
+                new ArrayList<String>(Arrays.asList("paciente = ? ORDER BY fecha")), //restricciones
+                new ArrayList<String>(Arrays.asList(paciente))); //valor a cumplor  
         %>    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ingreso cita</title>        
@@ -35,8 +40,7 @@
     <body>
         <%@include file="../html/navs/nav-doctor.html" %>    
         <%@include file="../html/ingresos/parte-superior.html" %>
-        <h1>Reporte: Citas agendadas entre las fechas: <%=fecha_inicio%> y <%=fecha_fin%></h1>
-        <%@include file="../html/mostrar-registro/tabla-generica.html" %>
+        <%@include file="../html/ingresos-doctor/form-mostrar-historial-paciente.html"%>
         <%@include file="../html/ingresos/parte-inferior.html" %>
         <%@include file="../html/js-bootstrap.html"%>
     </body>

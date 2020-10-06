@@ -1,0 +1,58 @@
+<h1>INGRESO RESULTADO</h1>
+<form class="col-12 caja2" method="post" action="../ControladorIngresoResultado" >        
+    <div class="form-group align-self-start">
+        <h5>Reservacion de examen de laboratorio</h5>
+        <select name="cita_examen" class="cont" id="cita" required> 
+            <option value="<%=cita_examen%>" ><%=cita_examen%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Examen</h5>
+        <select name="examen" class="cont" id="cita" required> 
+            <option value="<%=examen%>" ><%=examen%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Paciente</h5>
+        <select name="paciente" class="cont" id="paciente" required> 
+            <option value="<%=paciente%>" ><%=paciente%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Medico</h5>
+        <select name="medico" class="cont" id="medico" required> 
+            <option value="<%=medico%>" ><%=medico%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Laboratorista</h5>
+        <select name="laboratorista" class="cont" id="medico" required> 
+            <option value="<%=laboratorista%>" ><%=laboratorista%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Orden medica</h5>
+        <select name="orden" class="cont" id="medico" required> 
+            <option value="<%=orden%>" ><%=orden%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Archivo del informe</h5>
+        <input type="file" required placeholder="archivo de informe" name="informe"/>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Fecha</h5>
+        <select name="fecha" class="cont" id="fecha" required> 
+            <option value="<%=fecha%>" ><%=fecha%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Hora</h5>
+        <input type="time" required name="hora"/>
+    </div> 
+        <button type="submit" class="btn btn-dark">Registrar</button>
+</form>
+<form class="col-12 caja2" method="post" action="reporte-mostrar-citas-examen-en-curso.jsp" >
+    <h5>Regresar a ver la lista</h5>
+    <button type="submit" class="btn btn-dark">Regresar</button>
+</form>

@@ -1,0 +1,48 @@
+<h1>INGRESO CITA</h1>
+<form class="col-12 caja2" method="get" action="reporte-mostrar-historial-paciente.jsp" >
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+              <%
+                      for(int i = 0; i < titulo.size(); i++){
+              %>            
+              <th scope="row"><%=titulo.get(i)%></th>
+              <%
+                  }
+              %>
+          </tr>
+        </thead>
+        <tbody>
+            <%
+              for(int i = 0; i < lista.size(); i++){
+            %>
+              <tr>
+                  <th scope="row"><%=i + 1%></th>
+              <%
+                  for(int j = 0; j < lista.get(0).size(); j++){
+              %>
+                      <td><%=lista.get(i).get(j)%></td>
+                  <%
+                  }
+                  %>
+              </tr>
+            <%
+              }      
+            %>
+        </tbody>
+      </table>
+    <div class="form-group align-self-start">
+        <h5>Codigo cita</h5>
+        <select name="paciente" class="cont" required>   
+            <%
+                for(int i = 0; i < lista.size(); i++){
+            %>            
+            <option value="<%=lista.get(i).get(0)%>" selected><%=lista.get(i).get(0)%></option>
+            <%
+                }
+            %>
+        </select>
+    </div>        
+    <button type="submit" class="btn btn-dark">Siguiente</button>
+</form>

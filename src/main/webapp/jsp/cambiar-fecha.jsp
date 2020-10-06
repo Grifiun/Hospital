@@ -28,6 +28,8 @@
                 break; 
                 case "doctor":%><%@include file="../html/navs/nav-doctor.html" %><%
                 break; 
+                case "laboratorista":%><%@include file="../html/navs/nav-laboratorista.html" %><%
+                break; 
             } 
         %>
 

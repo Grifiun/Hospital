@@ -3,7 +3,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-          <a class="nav-link" href="home-admin.jsp"> ADMINISTRADOR <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="home-laboratorista.jsp"> LABORATORISTA <span class="sr-only">(current)</span></a>
       </li>      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="fecha_drop_down" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -15,15 +15,12 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="ingresos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          INGRESOS
+          EXAMENES
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="ingreso-examen.jsp">Ingresar examen</a>
-          <a class="dropdown-item" href="ingreso-laboratorista.jsp">Ingresar laboratorista</a>
-          <a class="dropdown-item" href="ingreso-administrador.jsp">Ingresar administrador</a>
-          <a class="dropdown-item" href="ingreso-doctor.jsp">Ingresar doctor</a>    
-          <a class="dropdown-item" href="ingreso-especialidad.jsp">Ingresar especialidad a un medico</a>  
-          <a class="dropdown-item" href="ingreso-consulta.jsp">Ingresar consulta</a>  
+          <a class="dropdown-item" href="reporte-mostrar-citas-examen-en-curso.jsp">Examenes a realizar en su turno del dia</a> 
+          <a class="dropdown-item" href="reporte-mostrar-citas-examen-completadas-hoy.jsp">Examenes realizados en su turno del dia</a>
+          
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -31,10 +28,7 @@
           MODIFICACIONES
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Modificar examen</a>
-          <a class="dropdown-item" href="#">Modificar laboratorista</a>
-          <a class="dropdown-item" href="#">Modificar doctor</a>
-          <a class="dropdown-item" href="#">Modificar costo de consulta</a>
+          <a class="dropdown-item" href="#">Modificar perfil</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -42,12 +36,7 @@
           Reportes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">10 Medicos con mas informes</a>
-          <a class="dropdown-item" href="#">Ingresos obtenidos por medico</a>
-          <a class="dropdown-item" href="#">5 Medicos con menos citas</a>
-          <a class="dropdown-item" href="#">Examenes de laboratorio mas demandados</a>
-          <a class="dropdown-item" href="#">Medicos con mayor cantidad de examenes de lab.</a>
-          <a class="dropdown-item" href="#">Ingresos obtenidos por paciente</a>
+          <a class="dropdown-item" href="#">Reporte de las 10 fechas con mas trabajo realizado</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -59,8 +48,8 @@
         </div>
       </li>
     </ul>
-  </div>    
-  <a class="navbar-brand" href="#">USUARIO: <% out.print(session.getAttribute("codigo")); %></a>  
+  </div>
+  <a class="navbar-brand" href="#">USUARIO: <% out.print(session.getAttribute("codigo")); %></a>
   <a class="navbar-brand" href="#">FECHA: <% out.print(session.getAttribute("fecha_sistema")); %></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
