@@ -1,0 +1,14 @@
+    <div class="form-group align-self-start">
+        <h5>Examenes disponibles</h5>
+        <select name="examen" class="cont" required>   
+            <%
+                for(int i = 0; i < lista.size(); i++){
+            %>            
+            <option value="<%=lista.get(i).get(0)%>" selected><%=lista.get(i).get(1)%></option>
+            <%
+                }
+            %>
+        </select>
+    </div>        
+    <button type="submit" class="btn btn-dark">Siguiente</button>
+</form>

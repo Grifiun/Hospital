@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ingreso-cita
-    Created on : 04-oct-2020, 23:40:57
+    Document   : ingreso-cita-examen
+    Created on : 05-oct-2020, 19:13:41
     Author     : grifiun
 --%>
 
@@ -12,37 +12,37 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>        
+        
      <%
-        String identificador = "CITA,codigo,paciente,medico,especialidad,fecha,hora";
+        String identificador = "CITA_EXAMEN,codigo,examen,fecha,medico,paciente,orden";
         session.setAttribute("identificador", identificador);        
         
         String paciente = (String) session.getAttribute("codigo");
-        String medico = request.getParameter("medico");
+        String examen = (String) request.getParameter("examen");
         request.getSession().setAttribute("fechaSistema", "desactivado");
         Consultar cons = new Consultar();          
+                
+        List<ArrayList<String>> listaDoctor = cons.obtenerRegistros("DOCTOR", //tabla
+                new ArrayList<>(Arrays.asList("codigo","nombre")), //datos a obtener
+                new ArrayList<String>(), //restricciones
+                new ArrayList<String>()); //valor a cumplor      
         
-        List<ArrayList<String>> listaEspecialidades = cons.obtenerRegistros("ESPECIALIDAD", //tabla
-                new ArrayList<>(Arrays.asList("titulo")), //datos a obtener
+        List<ArrayList<String>> listaEx = cons.obtenerRegistros("EXAMEN", //tabla
+                new ArrayList<>(Arrays.asList("orden")), //datos a obtener
                 new ArrayList<String>(Arrays.asList("codigo")), //restricciones
-                new ArrayList<String>(Arrays.asList(medico))); //valor a cumplor
-        
-        
-        List<ArrayList<String>> listaHorario = cons.obtenerRegistros("HORARIO", //tabla
-                new ArrayList<>(Arrays.asList("inicio","fin")), //datos a obtener
-                new ArrayList<String>(Arrays.asList("codigo")), //restricciones
-                new ArrayList<String>(Arrays.asList(medico))); //valor a cumplor
-       
+                new ArrayList<String>(Arrays.asList(examen))); //valor a cumplor  
+        String ordenEstado = listaEx.get(0).get(0);
         %>    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ingreso cita</title>        
+        <title>Ingreso cita exmane</title>        
         <%@include file="../html/css-bootstrap.html"%>
         <link href="../css/style-ingresos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <%@include file="../html/navs/nav-paciente.html" %>    
         <%@include file="../html/ingresos/parte-superior.html" %>
-        <%@include file="../html/ingresos-paciente/form-ingreso-cita.html" %>
+        <%@include file="../html/ingresos-paciente/form-ingreso-cita-examen.html" %>
         <%@include file="../html/ingresos/parte-inferior.html" %>
         <%@include file="../html/js-bootstrap.html"%>
     </body>

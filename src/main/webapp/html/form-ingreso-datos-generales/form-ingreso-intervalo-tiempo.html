@@ -1,0 +1,17 @@
+<h1>INGRESO INTERVALO DE TIEMPO</h1>
+<form class="col-12 caja2" method="post" action="<%=destino%>" >
+    
+    <div class="form-group align-self-start">
+        <h5>Ingrese el inicio</h5>
+        <input type="date" class="form-control" required placeholder="fecha inicio" name="fecha_inicio"/>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Ingrese el final del intervalo</h5>
+        <input type="date" class="form-control" required placeholder="fecha fin" name="fecha_fin"/>
+    </div>   
+    <button type="submit" class="btn btn-dark">Siguiente</button>
+</form>
+<form class="col-12 caja2" method="post" action="ingreso-mostrar-doctor.jsp" >
+    <h5>Regresar a ver la lista</h5>
+    <button type="submit" class="btn btn-dark">Regresar</button>
+</form>

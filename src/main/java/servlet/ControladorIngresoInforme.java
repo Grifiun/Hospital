@@ -5,9 +5,11 @@
  */
 package servlet;
 
+import conection_db.Actualizar;
+import conection_db.Consultar;
 import funciones.GenerarCodigoAleatorio;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.servlet.ServletException;
@@ -16,15 +18,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import registros.RealizarRegistroTabla;
-import conection_db.Consultar;
 
 /**
  *
  * @author grifiun
  */
-@WebServlet(name = "ControladorIngresoRegistro", urlPatterns = {"/ControladorIngresoRegistro"})
-public class ControladorIngresoRegistro extends HttpServlet {
+@WebServlet(name = "ControladorIngresoInforme", urlPatterns = {"/ControladorIngresoInforme"})
+public class ControladorIngresoInforme extends HttpServlet {
 
+   
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -73,6 +75,12 @@ public class ControladorIngresoRegistro extends HttpServlet {
        
         if(isRegistroCompleto){
             request.getSession().setAttribute("mensaje", "El registro se hizo con satisfaccion");
+            //Modificamos la cita a un estado "atendido"
+            String cita = request.getParameter("cita");//obtenemos el codigo de la cita
+            Actualizar act = new Actualizar("CITA", new ArrayList<String>(Arrays.asList("estado")),//tabla//Estado
+                    new ArrayList<String>(Arrays.asList("codigo")),//restriccion: modificar donde el codigo
+                    new ArrayList<String>(Arrays.asList("atendido",cita)));//valores
+            act.actualizar();
         }
         else{
             request.getSession().setAttribute("mensaje", "El registro no se realizo debido a un error");

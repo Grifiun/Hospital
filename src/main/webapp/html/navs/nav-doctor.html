@@ -1,9 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
+<nav class="navbar navbar-expand-lg navbar-light bg-light">  
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-          <a class="nav-link" href="home-paciente.jsp"> PACIENTE <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="home-doctor.jsp"> DOCTOR <span class="sr-only">(current)</span></a>
       </li>      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="fecha_drop_down" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -15,31 +14,20 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="ingresos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          AGENDAR
+          CITAS
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="ingreso-mostrar-doctor.jsp">Agendar citas</a> 
-          <a class="dropdown-item" href="ingreso-mostrar-examen-por-tipo.jsp">Agendar examenes de laboratorio</a> 
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="modificaciones" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          MODIFICACIONES
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Modificar perfil</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">        
+          <a class="dropdown-item" href="reporte-mostrar-cita-dia.jsp">Citas pendientes dia actual</a>
+          <a class="dropdown-item" href="ingreso-datos-reporte-mostrar-cita-intervalo.jsp">Citas en un intervalo de tiempo</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="reportes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Reportes
+          Otros reportes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Ultimos 5 examenes realizados</a>
-          <a class="dropdown-item" href="#">Cantidad de examenes de un tipo</a>
-          <a class="dropdown-item" href="#">Ultimas 5 consultas realizadas</a>
-          <a class="dropdown-item" href="#">Cantidad de consultas con un medico</a>
-          <a class="dropdown-item" href="#">Ver historial medico</a>
+          <a class="dropdown-item" href="#">Historial medico de pacientes</a>
+          <a class="dropdown-item" href="#">Pacientes con mayor cantidad de informes medicos en un intervalo de tiempo</a>         
         </div>
       </li>
     </ul>
