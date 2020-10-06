@@ -1,0 +1,42 @@
+<h1>INGRESO INFORME</h1>
+<form class="col-12 caja2" method="post" action="../ControladorIngresoInforme" >        
+    <div class="form-group align-self-start">
+        <h5>Cita</h5>
+        <select name="cita" class="cont" id="cita" required> 
+            <option value="<%=cita%>" ><%=cita%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Paciente</h5>
+        <select name="paciente" class="cont" id="paciente" required> 
+            <option value="<%=paciente%>" ><%=paciente%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Medico</h5>
+        <select name="medico" class="cont" id="medico" required> 
+            <option value="<%=medico%>" ><%=medico%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Fecha</h5>
+        <select name="fecha" class="cont" id="fecha" required> 
+            <option value="<%=fecha%>" ><%=fecha%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Hora</h5>
+        <select name="hora" class="cont" id="hora" required> 
+            <option value="<%=hora%>" ><%=hora%></option>            
+        </select>
+    </div> 
+    <div class="form-group align-self-start">
+        <h5>Descripcion del informe</h5>
+        <textarea class="form-control" id="informe" required rows="3" name="informe"></textarea>
+    </div>
+    <button type="submit" class="btn btn-dark">Registrar</button>
+</form>
+<form class="col-12 caja2" method="post" action="ingreso-mostrar-consulta-por-tipo.jsp" >
+    <h5>Regresar a ver la lista</h5>
+    <button type="submit" class="btn btn-dark">Regresar</button>
+</form>
