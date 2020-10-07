@@ -77,7 +77,7 @@ CREATE TABLE RESULTADO(
  medico VARCHAR(20) NOT NULL,
  examen VARCHAR(20) NOT NULL,
  laboratorista VARCHAR(20) NOT NULL,
- orden VARCHAR(45) NOT NULL,
+ orden VARCHAR(80) NOT NULL,
  informe VARCHAR(45) NOT NULL,
  fecha DATE NOT NULL,
  hora TIME NOT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE CITA_EXAMEN(
  estado VARCHAR(25) DEFAULT 'En proceso',
  medico VARCHAR(20) NULL,
  paciente VARCHAR(20) NOT NULL,
- orden VARCHAR(20) DEFAULT 'Sin_orden.jpg',
+ orden VARCHAR(80) DEFAULT 'Sin_orden.jpg',
 
  CONSTRAINT pk_cita_examen PRIMARY KEY(codigo),
  CONSTRAINT fk_cita_ex_examen FOREIGN KEY(examen) REFERENCES EXAMEN(codigo) ON UPDATE CASCADE,
