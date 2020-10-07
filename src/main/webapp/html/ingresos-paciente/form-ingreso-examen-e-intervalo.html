@@ -1,0 +1,23 @@
+<form class="col-12 caja2" method="get" action="reporte-examenes-laboratorio-en-intervalo-tiempo.jsp" >       
+    <div class="form-group align-self-start">
+        <h5>Examenes disponibles</h5>
+        <select name="examen" class="cont" required>   
+            <%
+                for(int i = 0; i < lista.size(); i++){
+            %>            
+            <option value="<%=lista.get(i).get(0)%>"><%=lista.get(i).get(1)%></option>
+            <%
+                }
+            %>
+        </select>
+    </div>        
+    <div class="form-group align-self-start">
+        <h5>Ingrese el inicio</h5>
+        <input type="date" class="form-control" required placeholder="fecha inicio" name="fecha_inicio"/>
+    </div>
+    <div class="form-group align-self-start">
+        <h5>Ingrese el final del intervalo</h5>
+        <input type="date" class="form-control" required placeholder="fecha fin" name="fecha_fin"/>
+    </div>   
+    <button type="submit" class="btn btn-dark">Siguiente</button>
+</form>
