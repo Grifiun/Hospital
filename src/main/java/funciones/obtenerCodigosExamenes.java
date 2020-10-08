@@ -11,7 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ *  Clase que nos obtiene los codigos de los examenes siempre y cuando ,la fecha ingresada
+ * sea un día habil para el laboratorista
  * @author grifiun
  */
 public class obtenerCodigosExamenes {

@@ -5,19 +5,19 @@
  */
 package servlet;
 
-import conection_db.Registrar;
-import funciones.GenerarQueryInsert;
+import conection_db.Consultar;
 import java.io.IOException;
 import funciones.GenerarCodigoAleatorio;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import registros.RealizarRegistroTabla;
+import encriptador.Encriptar;
+
 
 /**
  *
@@ -45,6 +45,7 @@ public class ControladorCrearUsuario extends HttpServlet {
         //nombre tabla
         rrt.addToIdentificador("PACIENTE");
         //Atributos
+        rrt.addToIdentificador("password");
         rrt.addToIdentificador("nombre");
         rrt.addToIdentificador("sexo");
         rrt.addToIdentificador("birth");
@@ -52,12 +53,19 @@ public class ControladorCrearUsuario extends HttpServlet {
         rrt.addToIdentificador("telefono");
         rrt.addToIdentificador("peso");
         rrt.addToIdentificador("sangre");
-        rrt.addToIdentificador("correo");
-        rrt.addToIdentificador("password");
+        rrt.addToIdentificador("correo");        
         rrt.addToIdentificador("codigo");
         //obtenemos los datos
         for(int i = 1; i < rrt.getIdentificador().size() - 1; i++){
-            rrt.addToDato(request.getParameter(rrt.getIdentificador().get(i)));
+            if(rrt.getIdentificador().get(i).equals("password")){   
+                //encriptamos
+                Encriptar encrpt = new Encriptar();
+                //Class.forName("org.apache.commons.codec.Driver");
+                String auxPass = request.getParameter(rrt.getIdentificador().get(i));
+                String auxEn = encrpt.getEncriptPass(auxPass);//encriptamos
+                rrt.addToDato(auxEn);                
+            }else
+            rrt.addToDato(request.getParameter(rrt.getIdentificador().get(i)));            
         }         
         //Creamos el codigo
         GenerarCodigoAleatorio genC = new GenerarCodigoAleatorio();
@@ -66,8 +74,26 @@ public class ControladorCrearUsuario extends HttpServlet {
         //registramos
         rrt.realizarRegistro();
         
-        String direccion = "jsp/home-paciente.jsp";
-        response.sendRedirect(direccion);
+         //Retornamos otra pagina dependiendo del resultado
+        Consultar cons = new Consultar();
+        boolean isRegistroCompleto = false;
+        isRegistroCompleto = cons.consultarExistenciaRegistro(rrt.getIdentificador().get(0), //TABLA
+                new ArrayList<String>(Arrays.asList("codigo")), // Consutlar PK 
+                new ArrayList<String>(Arrays.asList(auxCod)));//con valor
+        request.getSession().setAttribute("rol", "paciente");
+        request.getSession().setAttribute("codigo", auxCod);
+        
+        if(isRegistroCompleto){
+            request.getSession().setAttribute("mensaje", "El registro se hizo con satisfaccion, su CODIGO de usuario es: "+auxCod);
+            String direccion = "jsp/home-paciente.jsp";
+            response.sendRedirect(direccion);
+        }
+        else{
+            String direccion = "index.jsp";
+            response.sendRedirect(direccion);
+        }
+        
+        
     }
 
     

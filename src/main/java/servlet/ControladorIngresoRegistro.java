@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import registros.RealizarRegistroTabla;
 import conection_db.Consultar;
+import encriptador.Encriptar;
 
 /**
  *
@@ -49,6 +50,13 @@ public class ControladorIngresoRegistro extends HttpServlet {
                 GenerarCodigoAleatorio genC = new GenerarCodigoAleatorio();
                 String auxCod = genC.generarCodAleatorio(rrt.getIdentificador().get(0), rrt.getIdentificador().get(0).substring(0, 3), 1000, 9999);
                 rrt.addToDato(auxCod);
+            }else if(rrt.getIdentificador().get(i).equals("password")){   
+                //encriptamos
+                Encriptar encrpt = new Encriptar();
+                //Class.forName("org.apache.commons.codec.Driver");
+                String auxPass = request.getParameter(rrt.getIdentificador().get(i));
+                String auxEn = encrpt.getEncriptPass(auxPass);//encriptamos
+                rrt.addToDato(auxEn);                
             }else if(rrt.getIdentificador().get(i).equals("trabajo") || 
                     rrt.getIdentificador().get(i).equals("trabajof") ||
                     rrt.getIdentificador().get(i).equals("birth") ||

@@ -43,12 +43,20 @@ public class ControladorCargarArchivo extends HttpServlet {
         /**
          * Obtenemos el archivo desde el request
          */
-        Part archivo = request.getPart("archivo");
+        String path;
+        Part archivoPart = request.getPart("archivo");
+        String nombreArchivo = archivoPart.getSubmittedFileName();        
+        InputStream istream = archivoPart.getInputStream();
+        OutputStream ops = new FileOutputStream("archivos/" + nombreArchivo);
+        istream.transferTo(ops);//trasnferimos el flujo de datos al archivo auxiliar
+        File file = Paths.get(archivoPart.getSubmittedFileName()).toFile();//Guardamos dentro del servidor
+        path = file.getAbsolutePath().replace("/" + file.getName(), "") + "/archivos/" + nombreArchivo; 
+        //obtenemos la direccion       
         //instanciamos el objeto encargado de analizar el archivo
-        LeerArchivo la = new LeerArchivo(archivo.getSubmittedFileName());       
         
-        String direccion = "index.jsp";
-        response.sendRedirect(direccion);
+         LeerArchivo la = new LeerArchivo(path);//enviamos a analizar el archivo, usando su path o ruta
+         String direccion = "index.jsp";
+         response.sendRedirect(direccion);
     }
     
     /**

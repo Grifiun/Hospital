@@ -1,0 +1,31 @@
+<h1>ACTUALIZACION DE DATOS DE <%=identificador.get(0)%></h1>
+<form class="col-12 caja2" method="post" action="../ControladorActualizarRegistro" >
+    <div class="form-group align-self-start">
+        <h5>codigo</h5>
+        <select name="codigo" class="cont" required>                         
+            <option value="<%=codigo%>" selected><%=codigo%></option>            
+        </select>
+    </div>
+    <%
+        for(int i = 0; i < lista.get(0).size(); i++){
+    %> 
+    <div class="form-group align-self-start">
+        <h5><%=identificador.get(i+1)%></h5>
+        <input type="text" required name="<%=identificador.get(i+1)%>" value="<%=lista.get(0).get(i)%>"/>    
+    </div>
+    <%
+        }
+    %>
+    <%
+        if(identificador.get(0).equals("EXAMEN") == false){
+    %>    
+    <div class="form-group align-self-start">
+        <h5>password</h5>
+        <input type="password" required name="password"/>        
+    </div>  
+    <%
+        }
+    %>
+    <input type="reset" value="Restaurar">
+    <button type="submit" class="btn btn-dark">Actualizar</button>
+</form>

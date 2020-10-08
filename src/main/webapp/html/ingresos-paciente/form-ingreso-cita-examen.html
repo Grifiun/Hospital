@@ -21,11 +21,11 @@
             out.print("</div>");
             
             out.print("<div class=\"form-group align-self-start\">");
-            out.print("<select name=\"medico\" class=\"cont\" required>");
-                
             out.print("<h5>Medico que le dio la orden</h5>");
+            out.print("<select name=\"medico\" class=\"cont\" required>");               
+            
             for(int i = 0; i < listaDoctor.size(); i++){
-            out.print("<option value="+listaDoctor.get(i).get(0)+">"+listaDoctor.get(i).get(1)+"</option>");                 
+                out.print("<option value="+listaDoctor.get(i).get(0)+">"+listaDoctor.get(i).get(1)+"</option>");                 
             }
             out.print("</select>");
             out.print("</div>");
