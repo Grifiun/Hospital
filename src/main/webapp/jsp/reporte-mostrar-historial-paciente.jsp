@@ -27,14 +27,14 @@
         cons.setTipoConsulta("codigo,paciente,medico,especialidad,fecha,hora,estado");
         List<ArrayList<String>> lista = cons.obtenerRegistros("CITA", //tabla
                 new ArrayList<>(Arrays.asList("codigo","paciente","medico","especialidad","fecha","hora","estado")), //datos a obtener
-                new ArrayList<String>(Arrays.asList("paciente = ? ORDER BY fecha")), //restricciones
+                new ArrayList<String>(Arrays.asList("paciente = ? ORDER BY fecha ASC, hora ASC")), //restricciones
                 new ArrayList<String>(Arrays.asList(paciente))); //valor a cumplor  
         
         cons.setTipoConsulta("codigo,examen,fecha,estado,medico,paciente,orden");
         ArrayList<String> titulo2 = new ArrayList<>(Arrays.asList("codigo","examen","fecha","estado","medico","paciente","orden"));
         List<ArrayList<String>> lista2 = cons.obtenerRegistros("CITA_EXAMEN", //tabla
                 new ArrayList<>(Arrays.asList("codigo","examen","fecha","estado","medico","paciente","orden")), //datos a obtener
-                new ArrayList<String>(Arrays.asList("paciente = ? ORDER BY fecha")), //restricciones
+                new ArrayList<String>(Arrays.asList("paciente = ? ORDER BY fecha ASC")), //restricciones
                 new ArrayList<String>(Arrays.asList(paciente))); //valor a cumplor  
         %>    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

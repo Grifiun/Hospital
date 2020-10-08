@@ -1,0 +1,36 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+        <%
+                for(int i = 0; i < titulo.size(); i++){
+        %>            
+        <th scope="row"><%=titulo.get(i)%></th>
+        <%
+            }
+        %>
+    </tr>
+  </thead>
+  <tbody>
+      <%
+        for(int i = 0; i < lista.size(); i++){
+      %>
+        <tr>
+            <th scope="row"><%=i + 1%></th>           
+                <td><%=lista.get(i).get(0)%></td>
+                <%
+                String aux1 = lista.get(0).get(1);
+                String aux2 = lista2.get(0).get(1);
+                double total = Double.parseDouble(aux1) +  Double.parseDouble(aux2);
+                %>
+                <td><%=total%></td> 
+                <td><%=lista.get(i).get(2)%></td>
+                <td><%=lista.get(i).get(3)%></td>
+                <td><%=lista.get(i).get(4)%></td>
+                <td><%=lista.get(i).get(5)%></td>
+        </tr>
+      <%
+        }      
+      %>
+  </tbody>
+</table>
