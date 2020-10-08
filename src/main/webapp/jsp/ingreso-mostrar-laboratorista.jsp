@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ingreso-mostrar-doctor
-    Created on : 05-oct-2020, 15:31:01
+    Document   : ingreso-mostrar-laboratorista
+    Created on : 08-oct-2020, 11:00:01
     Author     : grifiun
 --%>
 
@@ -12,20 +12,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%        
+        <%        //String identificador2 = "LABORATORISTA,nombre,registro,dpi,telefono,examen,correo,trabajof,password";
         //titulos
-        ArrayList<String> titulo = new ArrayList<>(Arrays.asList("codigo","nombre","colegiado","dpi","correo","trabajo"));
-        String rol = (String) session.getAttribute("rol");
+        ArrayList<String> titulo = new ArrayList<>(Arrays.asList("codigo","nombre","registro","DPI","telefono","examen","correo","fecha de ingreso"));
         String destino = request.getParameter("destino");
-        
+        request.getSession().setAttribute("fechaSistema", "desactivado");
+        String rol = (String) session.getAttribute("rol");
         Consultar cons = new Consultar();
-        List<ArrayList<String>> lista = cons.obtenerRegistros("DOCTOR", //tabla
-                new ArrayList<>(Arrays.asList("codigo","nombre","colegiado","dpi","correo","trabajo")), //datos a obtener
+        List<ArrayList<String>> lista = cons.obtenerRegistros("LABORATORISTA", //tabla
+                new ArrayList<>(Arrays.asList("codigo","nombre","registro","dpi","telefono","examen","correo","trabajof")), //datos a obtener
                 new ArrayList<String>(), //restricciones
                 new ArrayList<String>()); //valor a cumplor  
         %>    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ingreso cita</title>        
+        <title>Listado pacientes, elija uno</title>        
         <%@include file="../html/css-bootstrap.html"%>
         <link href="../css/style-ingresos.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -42,11 +42,9 @@
                 case "laboratorista":%><%@include file="../html/navs/nav-laboratorista.html" %><%
                 break; 
             } 
-        %>   
+        %> 
         <%@include file="../html/ingresos/parte-superior.html" %>
-        <%@include file="../html/ingresos-paciente/form-inicio-hacia-cita.html" %>
-        <%@include file="../html/mostrar-registro/tabla-generica.html" %>
-        <%@include file="../html/ingresos-paciente/form-fin-hacia-cita.html" %>
+        <%@include file="../html/mostrar-registro/form-codigo-laboratorista.html"%>       
         <%@include file="../html/ingresos/parte-inferior.html" %>
         <%@include file="../html/js-bootstrap.html"%>
     </body>

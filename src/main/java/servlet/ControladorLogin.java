@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import conection_db.Consultar;
+import encriptador.Encriptar;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,9 +46,12 @@ public class ControladorLogin extends HttpServlet {
         ArrayList<String> atributosAux = new ArrayList();
         atributosAux.add("codigo");
         atributosAux.add("password");
-        ArrayList<String> datosAux = new ArrayList();
+        ArrayList<String> datosAux = new ArrayList();        
         datosAux.add(codigo);
-        datosAux.add(password);
+        //instanaciamos el encriptador
+        Encriptar encrpt = new Encriptar();
+        datosAux.add(encrpt.getEncriptPass(password));
+        System.out.println("pass: "+encrpt.getEncriptPass(password));
         for(int i = 0; i < tabla.length; i++){             
             if(cons.consultarExistenciaRegistro(tabla[i], atributosAux, datosAux)){//Verificamos si existe dicho usuario en la base de datos
                 usuarioRol = tabla[i].toLowerCase();//se lo encuentra le asigna el rol al usuario

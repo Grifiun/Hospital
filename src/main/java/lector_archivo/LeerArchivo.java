@@ -6,6 +6,7 @@
 package lector_archivo;
 
 import conection_db.Registrar;
+import encriptador.Encriptar;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -34,9 +35,10 @@ public class LeerArchivo {
     private List<ArrayList<String>> datoQuery = new ArrayList();    
     
     private String path;
-    public LeerArchivo(String nombreArchivo){
+    public LeerArchivo(String path){
         //this.archivo = archivo;
-        this.path = "/home/grifiun/proyectos/Hospital/xml/"+nombreArchivo;
+        this.path =path;
+        System.out.println(path);
         leerArchivo();        
     }    
     
@@ -160,8 +162,16 @@ public class LeerArchivo {
                 if(identificadorSubTabla.size() == 0){
                     System.out.println("            IDENT TAB:"+auxIdentify.toLowerCase());
                     System.out.println("            VALOR TAB: "+auxValor);
-                    identificador.add(auxIdentify.toLowerCase());//agregamos el identificador, todo en minusculas
-                    dato.add(auxValor);//agregamos el valor
+                    
+                    if(auxIdentify.toLowerCase().equals("password")){//si es una contrasena
+                        Encriptar encrpt = new Encriptar();
+                        identificador.add(auxIdentify.toLowerCase());//agregamos el identificador, todo en minusculas
+                        dato.add(encrpt.getEncriptPass(auxValor));//encriptamos la pass
+                    }else{
+                        identificador.add(auxIdentify.toLowerCase());//agregamos el identificador, todo en minusculas
+                        dato.add(auxValor);//agregamos el valor                   
+                    }                    
+                    
                 }else{//de lo contrario agregaremos los datos en la subtabla
                     identificadorSubTabla.add(auxIdentify.toLowerCase());//agregamos el identificador de la subtabla
                     datoSubTabla.add(auxValor);//agregamos el dato en la subtabla
